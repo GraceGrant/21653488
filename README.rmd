@@ -52,7 +52,7 @@ line_cases
 This graph shows how each continent experienced a growth in total cases (in millions) in 2020.
 
 ```{r}
-factors <- covid_data %>% select(location, aged_70_older, extreme_poverty, diabetes_prevalence, total_deaths_per_million) %>% group_by(location) %>% filter(!is.na(extreme_poverty)) %>% filter(!is.na(aged_70_older)) %>% filter(!is.na(diabetes_prevalence)) %>% slice(n()) %>% arrange(desc(aged_70_older))
+factors <- covid_data %>% select(location, aged_70_older, extreme_poverty, diabetes_prevalence, total_deaths_per_million) %>% group_by(location) %>% filter(!is.na(extreme_poverty)) %>% filter(!is.na(aged_70_older)) %>% filter(!is.na(diabetes_prevalence)) %>% slice(n()) %>% arrange(desc(extreme_poverty))
 
 countries_group1 <- c("Italy", "Portugal", "Latvia", "Greece", "Spain")
 countries_group2 <- c("Sierra Leone", "Gambia", "Burkina Faso", "Uganda", "Niger", "Gambia")
@@ -70,21 +70,20 @@ ggplot(data = filtered_df, aes(x = group, y = total_deaths_per_million, fill = l
 
 age_plot <- grouped_age(covid_data)
 age_plot
-
 ```
-
-AGAIN
 ```{r}
-df <- covid_data %>% group_by(location) %>% mutate(new_deaths = ifelse(is.na(new_deaths), 0, new_deaths)) %>%
-        summarise(new_deaths = sum(new_deaths)) 
-
-ggplot(df, aes(x = df$male_smokers, y = new_deaths, color = df$male_smokers)) +
-  geom_point() +
-  labs(title = "Scatterplot: Diabetes Prevalence vs Total Deaths",
-       x = "Diabetes Prevalence",
-       y = "Total Deaths") 
-  
+poverty_plot <- grouped_poverty(covid_data)
+poverty_plot
 ```
+```{r}
+factors <- covid_data %>% select(location, aged_70_older, extreme_poverty, diabetes_prevalence, total_deaths_per_million) %>% group_by(location) %>% filter(!is.na(extreme_poverty)) %>% filter(!is.na(aged_70_older)) %>% filter(!is.na(diabetes_prevalence)) %>% slice(n()) %>% arrange(desc(diabetes_prevalence))
+
+diabetes_plot <- grouped_diabetes(covid_data)
+diabetes_plot
+```
+
+
+
 
 ```{r}
 covid_cleaned <- covid_cleaned %>% mutate(weekly_hosp_admissions = ifelse(is.na(weekly_hosp_admissions), 0, weekly_hosp_admissions)) %>% mutate(weekly_icu_admissions = ifelse(is.na(weekly_icu_admissions), 0, weekly_icu_admissions))

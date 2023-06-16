@@ -133,5 +133,17 @@ line_cases
 This graph provides some insight into how the different continents experienced the update of COVID cases in 2020 when the pandemic began. Similar to the previous graph, Africa had a much lower total number of cases compared to Europe, Asia and North America. It is also interesting to note that cases only began to pick up in Africa towards the middle of the year while, for the Northern Hemisphere, cases were already accumulating from March/April.
 
 # Total deaths in different countries based on population age, poverty and diabetes prevalence
-
+```{r}
+age_plot <- grouped_age(covid_data)
+age_plot
+```
+```{r}
+poverty_plot <- grouped_poverty(covid_data)
+poverty_plot
+```
+```{r}
+diabetes_plot <- grouped_diabetes(covid_data)
+diabetes_plot
+```
+The three graphs provided produce some interesting results. Firstly, countries that had the highest percentage of the population aged older than 70 experienced much greater deaths than the countries that had younger populations. This makes sense given that older people are more susceptible to getting COVID and then dying from it. The third graph also makes sense, showing that countries with a higher prevalence of diabetes had more deaths from COVID. However, the second graph is somewhat counterintuitive in that poorer countries (those with higher levels of extreme poverty) mostly had fewer deaths than wealthier countries. Some reasons for this may be that the poor countries are in Africa which has the fewest deaths or that the metric for poverty includes so many other factors that it is difficult to establish a stong correlation between poverty and deaths from COVID.
 
