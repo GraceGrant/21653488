@@ -19,10 +19,14 @@ library(tidyverse)
 library(RColorBrewer)
 library(xtable)
 library(lubridate)
+library(huxtable)
+library(knitr)
 list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 covid_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/owid-covid-data.csv")
 deaths_by_cause <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/Deaths_by_cause.csv")
 description <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/covid_data_description.csv")
+combined_data <- bind_rows(covid_data, description)
+rm(combined_data)
 ```
 \newpage
 # Question 1: COVID
@@ -60,3 +64,26 @@ suppressWarnings(line_cases <- plot_cases(covid_cleaned))
 line_cases
 ```
 This graph shows how each continent experienced a growth in total cases (in millions) in 2020.
+
+1.2 For this question, I'm going to use scatterplots to see correlations. I want to see how the United States, United Kingdom and Australia differed in their total deaths and life expectancy. These countries are all relatively similar
+```{r LE table}
+countrylist <- c("United States", "United Kingdom", "Australia")
+country_covid <- covid_data %>% filter(location %in% countrylist)
+
+mean_life_expectancy <- country_covid %>%
+  group_by(location) %>%
+  summarize(mean_life_expectancy = mean(life_expectancy, na.rm = TRUE))
+
+table <- mean_life_expectancy %>%
+  kable(format = "markdown")
+table
+```
+This table shows that the life expectancy for each of these countries is relatively similar so they should be comparable.
+```{r scatter plots}
+LE_graph <- plot_deaths_LE(covid_data)
+LE_graph
+
+```
+This shows that Australia has a much lower total deaths per million figure. I don'think this actaully makes sense.
+
+
