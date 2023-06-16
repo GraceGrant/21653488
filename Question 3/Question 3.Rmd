@@ -133,6 +133,21 @@ scatter_cp
 scatter_m <- scatter_metallica(metallica_data)
 scatter_m
 ```
+# Popularity
+The popularity of each of the bands' albums is also important to consider and is highlighted in the following graphs.
+```{r}
+studio_coldplay <- coldplay_data %>% filter(!grepl("live|Live", name)) %>% filter(!grepl("live|Live", album_name))
+studio_metallica <- metallica_data %>% filter(!grepl("live|Live", name)) %>% filter(!grepl("live|Live", album))
+pop_g_cp <- popularity_coldplay(studio_coldplay)
+pop_g_cp
+```
+```{r}
+pop_g_m <- popularity_metallica(studio_metallica)
+pop_g_m
+```
+These graphs show that the most popular albums for Coldplay and Metallica are Mylo Xyloto and 72 Seasons, respectively. 
+
+
 
 
 
