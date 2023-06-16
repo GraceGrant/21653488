@@ -3,7 +3,7 @@
 # Remove comments and add values where applicable.
 # The descriptions below should be self-explanatory
 
-title: "Question 1"
+title: "Question 1: COVID"
 #subtitle: "This will appear as Right Header"
 
 documentclass: "elsarticle"
@@ -98,11 +98,13 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width 
 # Lets load in example data, and see how this can be stored and later called from your 'data' folder.
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
+library(RColorBrewer)
+library(xtable)
 
 
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
-write_rds(Example_data, path = "data/Example_data.rds")
+
 
 ```
 
@@ -111,5 +113,13 @@ write_rds(Example_data, path = "data/Example_data.rds")
 <!-- # Start Writing here: -->
 <!-- ############################## -->
 
-# Introduction \label{Introduction}
+# Question 1.1 
+```{r, include=FALSE}
+covid_cleaned <- covid_data %>%
+  filter(location %in% c("Africa", "Asia", "North America", "Oceania", "South America", "Europe")) %>% mutate(total_deaths = ifelse(is.na(total_deaths), 0, total_deaths))
+
+bar_deaths <- plot_deaths(covid_cleaned)
+bar_deaths
+```
+
 

@@ -18,6 +18,7 @@ gc() # garbage collection - It can be useful to call gc after a large object has
 library(tidyverse)
 library(RColorBrewer)
 library(xtable)
+library(lubridate)
 list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 covid_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/owid-covid-data.csv")
 deaths_by_cause <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/Deaths_by_cause.csv")
@@ -26,7 +27,7 @@ description <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Scien
 \newpage
 # Question 1: COVID
 1.1 It might be interesting to look at vaccinations in Africa and the outbreak of the pandemic compared to other regions. For this question I could maybe also look at the deaths by cause database to see how COVID deaths differed to deaths before COVID.
-```{r}
+```{r bar deaths}
 
 total_deaths_per_continent <- df_cleaned %>% group_by(location) %>% mutate(total_deaths = total_deaths / 1000000) %>%
   summarise(total_deaths = sum(total_deaths)) 
@@ -42,10 +43,20 @@ rm(plot_total_deaths_per_continent)
 covid_cleaned <- covid_data %>%
   filter(location %in% c("Africa", "Asia", "North America", "Oceania", "South America", "Europe")) %>% mutate(total_deaths = ifelse(is.na(total_deaths), 0, total_deaths))
 
+covid_cleaned <- covid_cleaned %>% mutate(total_cases = ifelse(is.na(total_cases), 0, total_cases))
+
 bar_deaths <- plot_deaths(covid_cleaned)
 bar_deaths
 ```
+This first graph shows the total number of deaths (in millions) for each continent from COVID.
 
+```{r}
+library(lubridate)
+library(dplyr)
+rm(monthly_cases)
+rm(covid_data_2020)
 
-
-
+suppressWarnings(line_cases <- plot_cases(covid_cleaned))
+line_cases
+```
+This graph shows how each continent experienced a growth in total cases (in millions) in 2020.
