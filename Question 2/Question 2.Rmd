@@ -104,6 +104,13 @@ library(tidyverse)
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
 
+london_weather <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/london_weather.csv")
+UK_detailed <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/UKMonthly_Detailed.csv")
+london_weather$date <-as.character(london_weather$date)
+
+UK_detailed$DATE <- as.Date(paste0(UK_detailed$DATE, "-01"), format = "%Y-%m-%d")
+
+london_2000 <- london_weather %>% filter(date > 19991231)
 
 ```
 
@@ -112,7 +119,27 @@ library(tidyverse)
 <!-- # Start Writing here: -->
 <!-- ############################## -->
 
-# Introduction \label{Introduction}
+# Introduction 
+I really don't think what you have to say about English weather is right. Haven't you heard how much the Brits complain about their weather?! I've got some data that uses both London's weather and the weather in central UK so I'm going to show you how bad the UK weather really is and maybe convince you to stay here in sunny South Africa.
+
+# Average London weather statistics
+```{r}
+graph_cloud <- avg_london(london_2000)
+graph_cloud
+```
+As you can see from this graph, there's a LOT of cloud cover in London and not all that much sunshine in comparison. This also shows the averages from 2000 so that's a lot of time to see how miserable the weather is in London. I can also show you rainfall in December 2020.
+```{r}
+rain_graph <- london_rain(london_weather)
+rain_graph
+```
+Look at that! It rained nearly every day in December 2020 (as it normally does that time of year). Do you really want to be spending your December holiday in the wet UK when you know we'll all be having a wonderful Christmas sitting on the beach, getting a nice tan?
+
+
+
+I've got some more graphs too that will hopefully further my point.
+
+This graph shows that average monthly temperatures for the central UK, which is where you're wanting to go. I've also got the averages for the minimum and maximum temperatures to show you how you'll have some cold weather in store.
+
 
 
 

@@ -1,10 +1,11 @@
 avg_london <- function(london_2000){
 
-    df <- london_2000 %>% na.omit() %>% select(c(cloud_cover, sunshine, precipitation)) %>%
-        summarise_at(vars(c(cloud_cover, sunshine, precipitation)), ~mean(.)) %>%
+    df <- london_2000 %>% na.omit() %>% select(c(cloud_cover, sunshine)) %>%
+        summarise_at(vars(c(cloud_cover, sunshine)), ~mean(.)) %>%
+        mutate(sunshine = sunshine / 1.77) %>%
         gather(key = "variable", value = "mean_value")
 
-    bar_colours <- c("grey", "blue", "yellow")
+    bar_colours <- c("grey", "yellow")
 
     g <- df %>% ggplot() +
         geom_bar(aes(x = variable, y = mean_value, fill = variable), stat = "identity") +

@@ -137,6 +137,36 @@ g <- monthly_admissions %>% ggplot() +
         scale_color_discrete(name = "Location")
     g
 ```
+\newpage
+```{r loading data}
+london_weather <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/london_weather.csv")
+UK_detailed <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/UKMonthly_Detailed.csv")
+london_weather$date <-as.character(london_weather$date)
+
+
+UK_detailed$DATE <- as.Date(paste0(UK_detailed$DATE, "-01"), format = "%Y-%m-%d")
+
+london_2000 <- london_weather %>% filter(date > 19991231)
+#this only includes London weather info from 2000
+```
+
+I want to compare cloud cover and sunshine in London to see what they look like compared to each other.
+```{r}
+graph_cloud <- avg_london(london_2000)
+graph_cloud
+```
+I'm using the next graph to show the rainfall for every day of the month of December in 2020.
+```{r london rain}
+rain_graph <- london_rain(london_weather)
+rain_graph
+```
+
+There's a lot of data starting all the way from 1881 which I don't think is very necessary. The weather and climate has also changed a lot since then.
+```{r}
+UK_1980 <- UK_detailed %>% filter (DATE >= "1980-01-01")
+storm_graph <- storm_line(UK_1980)
+storm_graph
+```
 
 
 
