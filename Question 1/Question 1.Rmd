@@ -100,7 +100,8 @@ if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
 library(RColorBrewer)
 library(xtable)
-
+library(lubridate)
+library(dplyr)
 
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
@@ -113,7 +114,7 @@ library(xtable)
 <!-- # Start Writing here: -->
 <!-- ############################## -->
 
-# Question 1.1 
+# Total deaths per continent
 ```{r, include=FALSE}
 covid_cleaned <- covid_data %>%
   filter(location %in% c("Africa", "Asia", "North America", "Oceania", "South America", "Europe")) %>% mutate(total_deaths = ifelse(is.na(total_deaths), 0, total_deaths))
@@ -121,5 +122,16 @@ covid_cleaned <- covid_data %>%
 bar_deaths <- plot_deaths(covid_cleaned)
 bar_deaths
 ```
+We can see from the above graph how each continent was affected by the pandemic, according to the total number of deaths. Europe, North America and Asia had the highest number of deaths which could be linked to their population sizes as well as the proximity in which people live in those regions. Africa and Oceania had the least deaths which could be a result of many factors, one of which is a lack of or incorrect reporting of deaths, especially in Africa.
+
+# Trajectory of cases in 2020 per continent
+```{r, include=FALSE}
+line_cases <- plot_cases(covid_cleaned)
+line_cases
+
+```
+This graph provides some insight into how the different continents experienced the update of COVID cases in 2020 when the pandemic began. Similar to the previous graph, Africa had a much lower total number of cases compared to Europe, Asia and North America. It is also interesting to note that cases only began to pick up in Africa towards the middle of the year while, for the Northern Hemisphere, cases were already accumulating from March/April.
+
+# Total deaths in different countries based on population age, poverty and diabetes prevalence
 
 

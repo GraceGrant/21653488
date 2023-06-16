@@ -11,7 +11,7 @@ plot_cases <- function(covid_cleaned){
 
     g <- monthly_cases %>% ggplot() +
         geom_line(aes(x = month, y = total_cases, color = location, group = location)) +
-        labs(title = "Total Cases per Month and Location (2020)", x = "Month", y = "Total Deaths") +
+        labs(title = "Total Cases per Month and Location (2020)", x = "Month", y = "Total Cases") +
         scale_color_discrete(name = "Location")
     g
 

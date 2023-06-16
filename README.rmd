@@ -25,24 +25,12 @@ list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.
 covid_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/owid-covid-data.csv")
 deaths_by_cause <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/Deaths_by_cause.csv")
 description <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/covid_data_description.csv")
-combined_data <- bind_rows(covid_data, description)
-rm(combined_data)
+
 ```
 \newpage
 # Question 1: COVID
 1.1 It might be interesting to look at vaccinations in Africa and the outbreak of the pandemic compared to other regions. For this question I could maybe also look at the deaths by cause database to see how COVID deaths differed to deaths before COVID.
 ```{r bar deaths}
-
-total_deaths_per_continent <- df_cleaned %>% group_by(location) %>% mutate(total_deaths = total_deaths / 1000000) %>%
-  summarise(total_deaths = sum(total_deaths)) 
-
-rm(continent_covid)
-rm(df_subset)
-rm(bar_deaths)
-rm(covid_updated)
-rm(df_cleaned)
-rm(g)
-rm(plot_total_deaths_per_continent)
 
 covid_cleaned <- covid_data %>%
   filter(location %in% c("Africa", "Asia", "North America", "Oceania", "South America", "Europe")) %>% mutate(total_deaths = ifelse(is.na(total_deaths), 0, total_deaths))
@@ -52,60 +40,39 @@ covid_cleaned <- covid_cleaned %>% mutate(total_cases = ifelse(is.na(total_cases
 bar_deaths <- plot_deaths(covid_cleaned)
 bar_deaths
 ```
-This first graph shows the total number of deaths (in millions) for each continent from COVID.
+This first graph shows the total number of deaths for each continent from COVID.
 
 ```{r}
 library(lubridate)
 library(dplyr)
-rm(monthly_cases)
-rm(covid_data_2020)
 
 suppressWarnings(line_cases <- plot_cases(covid_cleaned))
 line_cases
 ```
 This graph shows how each continent experienced a growth in total cases (in millions) in 2020.
 
-1.2 For this question, I'm going to use scatterplots to see correlations. I want to see how the United States, United Kingdom and Australia differed in their total deaths and life expectancy. These countries are all relatively similar
-```{r LE table}
-countrylist <- c("United States", "United Kingdom", "Australia")
-country_covid <- covid_data %>% filter(location %in% countrylist)
-
-mean_life_expectancy <- country_covid %>%
-  group_by(location) %>%
-  summarize(mean_life_expectancy = mean(life_expectancy, na.rm = TRUE))
-
-table <- mean_life_expectancy %>%
-  kable(format = "markdown")
-table
-```
-This table shows that the life expectancy for each of these countries is relatively similar so they should be comparable.
-```{r scatter plots}
-LE_graph <- plot_deaths_LE(covid_data)
-LE_graph
-
-```
-This shows that Australia has a much lower total deaths per million figure. I don'think this actaully makes sense.
-
-I'm going to single out a few countries 
 ```{r}
-top_countries <- covid_data %>%
-  arrange(desc(human_development_index), desc(gdp_per_capita), desc(diabetes_prevalence)) %>%
-  group_by(location) %>%
-  slice_head(n = 1) 
+factors <- covid_data %>% select(location, aged_70_older, extreme_poverty, diabetes_prevalence, total_deaths_per_million) %>% group_by(location) %>% filter(!is.na(extreme_poverty)) %>% filter(!is.na(aged_70_older)) %>% filter(!is.na(diabetes_prevalence)) %>% slice(n()) %>% arrange(desc(aged_70_older))
+
+countries_group1 <- c("Italy", "Portugal", "Latvia", "Greece", "Spain")
+countries_group2 <- c("Sierra Leone", "Gambia", "Burkina Faso", "Uganda", "Niger", "Gambia")
+
+filtered_df <- factors %>%
+  filter(location %in% c(countries_group1, countries_group2)) %>%
+  mutate(group = ifelse(location %in% countries_group1, "Group 1", "Group 2"))
+
+ggplot(data = filtered_df, aes(x = group, y = total_deaths_per_million, fill = location)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(title = "Total Deaths Comparison",
+       x = "Group",
+       y = "Total Deaths") +
+  theme_bw()
+
+age_plot <- grouped_age(covid_data)
+age_plot
 
 ```
-Correlation between HDI and deaths and diabetes and deaths
-```{r}
-s_data <- covid_data %>% group_by(location) %>% slice(n()) %>% mutate(total_deaths = ifelse(is.na(total_deaths), 0, total_deaths)) %>% filter(!is.na(diabetes_prevalence), !is.na(gdp_per_capita))
 
-highest_hdi_country <- covid_data$location[which.max(covid_data$human_development_index)]
-lowest_hdi_country <- covid_data$location[which.min(covid_data$human_development_index)]
-highest_gdp <- covid_data$location[which.max(covid_data$gdp_per_capita)]
-Lowest_gdp <- covid_data$location[which.min(covid_data$gdp_per_capita)]
-
-gdp_graph <- plot_comparison(covid_data)
-gdp_graph
-```
 AGAIN
 ```{r}
 df <- covid_data %>% group_by(location) %>% mutate(new_deaths = ifelse(is.na(new_deaths), 0, new_deaths)) %>%
@@ -182,6 +149,7 @@ correlation_m <- cor(metallica_data[, c("popularity", "danceability", "energy", 
 correlation_m
 #correlations show that danceability had the highest positive relationship with popularity for Coldplay and the second highest for Metallica so I'm using that metric
 
+
 scatter_cp <- scatter_coldplay(coldplay_data)
 scatter_cp
 ```
@@ -210,6 +178,15 @@ pop_g_cp
 pop_g_m <- popularity_metallica(studio_metallica)
 pop_g_m
 ```
+```{r}
+box_cp <- box_coldplay(studio_coldplay)
+box_cp
+```
+```{r}
+box_m <- box_metallica(studio_metallica)
+box_m
+```
+I can maybe consider doing something linked to valence to show happy vs sad. Isn't really linked to popularity though so I'm not sure yet. 
 
 
 
