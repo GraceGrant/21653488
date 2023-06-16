@@ -134,11 +134,15 @@ rain_graph
 ```
 Look at that! It rained nearly every day in December 2020 (as it normally does that time of year). Do you really want to be spending your December holiday in the wet UK when you know we'll all be having a wonderful Christmas sitting on the beach, getting a nice tan?
 
-
-
 I've got some more graphs too that will hopefully further my point.
 
-This graph shows that average monthly temperatures for the central UK, which is where you're wanting to go. I've also got the averages for the minimum and maximum temperatures to show you how you'll have some cold weather in store.
+This graph shows that average monthly temperatures for the central UK, which is where you're wanting to go, since 1980. You can see that the average temperature hasn't changed all that much since 1980 (so don't be fooled by rising global temperatures!) and that the average is round about 9/10 degrees. I don't know about you, but I think that's pretty cold!
+```{r}
+UK_1980 <- UK_detailed %>% filter (DATE >= "1980-01-01")
+temp_graph <- temp_bar(UK_1980)
+temp_graph
+```
+
 
 
 

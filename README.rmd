@@ -164,9 +164,43 @@ rain_graph
 There's a lot of data starting all the way from 1881 which I don't think is very necessary. The weather and climate has also changed a lot since then.
 ```{r}
 UK_1980 <- UK_detailed %>% filter (DATE >= "1980-01-01")
-storm_graph <- storm_line(UK_1980)
-storm_graph
+temp_graph <- temp_bar(UK_1980)
+temp_graph
 ```
+Question 3
+```{r load data}
+coldplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/Coldplay.csv")
+metallica_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/metallica.csv")
+spotify_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/Broader_Spotify_Info.csv")
+```
+
+I'm going to do a scatter plot to see the correlation between energy and popularity and then, for each album of the bands, do a bar graph of their popularity and danceability.
+```{r}
+correlation_cp <- cor(coldplay_data[, c("popularity", "danceability", "energy", "instrumentalness", "liveness", "loudness")])
+correlation_cp
+correlation_m <- cor(metallica_data[, c("popularity", "danceability", "energy", "instrumentalness", "liveness", "loudness")])
+correlation_m
+#correlations show that danceability had the highest positive relationship with popularity for Coldplay and the second highest for Metallica so I'm using that metric
+
+scatter_cp <- scatter_coldplay(coldplay_data)
+scatter_cp
+```
+```{r}
+scatter_m <- scatter_metallica(metallica_data)
+scatter_m
+```
+
+```{r}
+top_10_danceability_songs <- spotify_data %>% select(c(name, artist, danceability)) %>% 
+  arrange(desc(danceability)) %>%
+  head(10)
+top_10_table <- as_huxtable(top_10_danceability_songs)
+top_10_table
+```
+
+
+
+
 
 
 

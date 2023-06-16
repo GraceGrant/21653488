@@ -3,7 +3,7 @@
 # Remove comments and add values where applicable.
 # The descriptions below should be self-explanatory
 
-title: "Question 3"
+title: "Question 3: Coldplay vs Metallica"
 #subtitle: "This will appear as Right Header"
 
 documentclass: "elsarticle"
@@ -110,7 +110,30 @@ library(tidyverse)
 <!-- # Start Writing here: -->
 <!-- ############################## -->
 
-# Introduction \label{Introduction}
+# Introduction 
+Coldplay and Metallica are two of the longest-lasting bands of this generation, with careers spanning more than two decades. The following report outlines some of the interesting factors associated with each band's popularity, making use of graphics to illustrate the results.
+
+# Danceability
+Everybody loves to dance when listening to music as a form of outlet and a way to have fun. This table shows the top 10 songs based on danceability according to Spotify. Many of these artists are highly successful, indicating a possible link between danceability and popularity.
+```{r}
+top_10_danceability_songs <- spotify_data %>% select(c(name, artist, danceability)) %>% 
+  arrange(desc(danceability)) %>%
+  head(10)
+top_10_table <- as_huxtable(top_10_danceability_songs)
+top_10_table
+```
+
+
+These scatter plots show the correlation between danceability and popularity for each of the bands, indicating a positive link between the two factors.
+```{r}
+scatter_cp <- scatter_coldplay(coldplay_data)
+scatter_cp
+```
+```{r}
+scatter_m <- scatter_metallica(metallica_data)
+scatter_m
+```
+
 
 
 
