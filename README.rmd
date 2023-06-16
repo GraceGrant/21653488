@@ -86,4 +86,58 @@ LE_graph
 ```
 This shows that Australia has a much lower total deaths per million figure. I don'think this actaully makes sense.
 
+I'm going to single out a few countries 
+```{r}
+top_countries <- covid_data %>%
+  arrange(desc(human_development_index), desc(gdp_per_capita), desc(diabetes_prevalence)) %>%
+  group_by(location) %>%
+  slice_head(n = 1) 
+
+```
+Correlation between HDI and deaths and diabetes and deaths
+```{r}
+s_data <- covid_data %>% group_by(location) %>% slice(n()) %>% mutate(total_deaths = ifelse(is.na(total_deaths), 0, total_deaths)) %>% filter(!is.na(diabetes_prevalence), !is.na(gdp_per_capita))
+
+highest_hdi_country <- covid_data$location[which.max(covid_data$human_development_index)]
+lowest_hdi_country <- covid_data$location[which.min(covid_data$human_development_index)]
+highest_gdp <- covid_data$location[which.max(covid_data$gdp_per_capita)]
+Lowest_gdp <- covid_data$location[which.min(covid_data$gdp_per_capita)]
+
+gdp_graph <- plot_comparison(covid_data)
+gdp_graph
+```
+AGAIN
+```{r}
+df <- covid_data %>% group_by(location) %>% mutate(new_deaths = ifelse(is.na(new_deaths), 0, new_deaths)) %>%
+        summarise(new_deaths = sum(new_deaths)) 
+
+ggplot(df, aes(x = df$male_smokers, y = new_deaths, color = df$male_smokers)) +
+  geom_point() +
+  labs(title = "Scatterplot: Diabetes Prevalence vs Total Deaths",
+       x = "Diabetes Prevalence",
+       y = "Total Deaths") 
+  
+```
+
+```{r}
+covid_cleaned <- covid_cleaned %>% mutate(weekly_hosp_admissions = ifelse(is.na(weekly_hosp_admissions), 0, weekly_hosp_admissions)) %>% mutate(weekly_icu_admissions = ifelse(is.na(weekly_icu_admissions), 0, weekly_icu_admissions))
+
+df <- covid_cleaned %>%
+        mutate(date = as.Date(date)) %>%
+        filter(year(date) == 2020) %>%
+        mutate(month = month(date, label = TRUE))
+
+monthly_admissions <- df %>%
+        group_by(month) %>% 
+        summarize(weekly_hosp_admissions = sum(weekly_hosp_admissions))
+
+g <- monthly_admissions %>% ggplot() +
+        geom_line(aes(x = month, y = weekly_hosp_admissions)) +
+        labs(title = "Total Cases per Month and Location (2020)", x = "Month", y = "Total Deaths") +
+        scale_color_discrete(name = "Location")
+    g
+```
+
+
+
 

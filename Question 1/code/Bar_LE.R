@@ -1,14 +1,13 @@
-plot_deaths_LE <- function(covid_data){
+scatter_smokers <- function(covid_data) {
 
-    countrylist <- c("United States", "United Kingdom", "Australia")
-    df <- covid_data %>% filter(location %in% countrylist) %>%
-        mutate(total_deaths_per_million = ifelse(is.na(total_deaths_per_million), 0, total_deaths_per_million))
+    df <- covid_data %>% group_by(location) %>% mutate(new_deaths = ifelse(is.na(new_deaths), 0, new_deaths)) %>%
+        summarise(new_deaths = sum(new_deaths))
+
 
     g <- df %>% ggplot() +
-        geom_bar(aes(x = location, y = total_deaths_per_million), stat = "identity", fill = "purple") +
+        geom_point(aes(x = df$gdp_per_capita, y = new_deaths)) +
         theme_bw() +
-        scale_y_continuous(labels = scales::number_format()) +
-        labs(title = "Total Deaths", x = "Country", y = "Total Deaths per Million")
+        labs(title = "Scatterplot: Male Smokers vs Total Deaths", x = "Male Smokers", y = "Total Deaths")
 
     g
 
