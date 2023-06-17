@@ -52,22 +52,6 @@ line_cases
 This graph shows how each continent experienced a growth in total cases (in millions) in 2020.
 
 ```{r}
-factors <- covid_data %>% select(location, aged_70_older, extreme_poverty, diabetes_prevalence, total_deaths_per_million) %>% group_by(location) %>% filter(!is.na(extreme_poverty)) %>% filter(!is.na(aged_70_older)) %>% filter(!is.na(diabetes_prevalence)) %>% slice(n()) %>% arrange(desc(extreme_poverty))
-
-countries_group1 <- c("Italy", "Portugal", "Latvia", "Greece", "Spain")
-countries_group2 <- c("Sierra Leone", "Gambia", "Burkina Faso", "Uganda", "Niger", "Gambia")
-
-filtered_df <- factors %>%
-  filter(location %in% c(countries_group1, countries_group2)) %>%
-  mutate(group = ifelse(location %in% countries_group1, "Group 1", "Group 2"))
-
-ggplot(data = filtered_df, aes(x = group, y = total_deaths_per_million, fill = location)) +
-  geom_bar(stat = "identity", position = position_dodge()) +
-  labs(title = "Total Deaths Comparison",
-       x = "Group",
-       y = "Total Deaths") +
-  theme_bw()
-
 age_plot <- grouped_age(covid_data)
 age_plot
 ```
@@ -86,22 +70,8 @@ diabetes_plot
 
 
 ```{r}
-covid_cleaned <- covid_cleaned %>% mutate(weekly_hosp_admissions = ifelse(is.na(weekly_hosp_admissions), 0, weekly_hosp_admissions)) %>% mutate(weekly_icu_admissions = ifelse(is.na(weekly_icu_admissions), 0, weekly_icu_admissions))
-
-df <- covid_cleaned %>%
-        mutate(date = as.Date(date)) %>%
-        filter(year(date) == 2020) %>%
-        mutate(month = month(date, label = TRUE))
-
-monthly_admissions <- df %>%
-        group_by(month) %>% 
-        summarize(weekly_hosp_admissions = sum(weekly_hosp_admissions))
-
-g <- monthly_admissions %>% ggplot() +
-        geom_line(aes(x = month, y = weekly_hosp_admissions)) +
-        labs(title = "Total Cases per Month and Location (2020)", x = "Month", y = "Total Deaths") +
-        scale_color_discrete(name = "Location")
-    g
+admissions_plot <- admissions(covid_data)
+admissions_plot
 ```
 \newpage
 ```{r loading data}

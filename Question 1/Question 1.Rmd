@@ -145,5 +145,14 @@ poverty_plot
 diabetes_plot <- grouped_diabetes(covid_data)
 diabetes_plot
 ```
-The three graphs provided produce some interesting results. Firstly, countries that had the highest percentage of the population aged older than 70 experienced much greater deaths than the countries that had younger populations. This makes sense given that older people are more susceptible to getting COVID and then dying from it. The third graph also makes sense, showing that countries with a higher prevalence of diabetes had more deaths from COVID. However, the second graph is somewhat counterintuitive in that poorer countries (those with higher levels of extreme poverty) mostly had fewer deaths than wealthier countries. Some reasons for this may be that the poor countries are in Africa which has the fewest deaths or that the metric for poverty includes so many other factors that it is difficult to establish a stong correlation between poverty and deaths from COVID.
+The three graphs provided produce some interesting results. Firstly, countries that had the highest percentage of the population aged older than 70 experienced much greater deaths than the countries that had younger populations. This makes sense given that older people are more susceptible to getting COVID and then dying from it. The third graph also makes sense, showing that countries with a higher prevalence of diabetes had more deaths from COVID. However, the second graph is somewhat counterintuitive in that poorer countries (those with higher levels of extreme poverty) mostly had fewer deaths than wealthier countries. Some reasons for this may be that the poor countries are in Africa which has the fewest deaths or that the metric for poverty includes so many other factors that it is difficult to establish a strong correlation between poverty and deaths from COVID.
+
+#Weekly ICU and hospital admissions
+It is also interesting to consider hospitalisation figures, which are shown by weekly ICU and weekly hopsital admissions in the following graph.
+```{r}
+admissions_plot <- admissions(covid_data)
+admissions_plot
+```
+It is evident that ICU admissions are much lower and that they also lag hospital admissions in some cases. This indicates that patients might move into ICU after initial hospitalisation as their condition deteriorates. However, ICU admissions sit mostly in line with spikes in hospital admissions, suggesting that severe cases generally align with overall hospitalisation.
+
 
