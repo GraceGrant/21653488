@@ -31,8 +31,8 @@ Email1: "21653488\\@sun.ac.za" # First Author's Email address
 
 
 # Comment out below to remove both. JEL Codes only given if keywords also given.
-keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Copula" # Use \\sep to separate
-JELCodes: "L250 \\sep L100"
+#keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Copula" # Use \\sep to separate
+#JELCodes: "L250 \\sep L100"
 
 # ----- Manage headers and footers:
 #BottomLFooter: $Title$
@@ -82,6 +82,7 @@ output:
     template: Tex/TexDefault.txt
     fig_width: 3.5 # Adjust default figure sizes. This can also be done in the chunks of the text.
     fig_height: 3.5
+
 ---
 
 <!-- First: Set your default preferences for chunk options: -->
@@ -103,12 +104,17 @@ list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.
 googleplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore.csv")
 reviews_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore_user_reviews.csv")
 merged_google <- merge(googleplay_data, reviews_data, by = "App")
+
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
 
 
 ```
 
+
+<!-- ############################## -->
+<!-- # Start Writing here: -->
+<!-- ############################## -->
 
 # App size and ratings linked to number of installs
 ```{r}
@@ -126,17 +132,15 @@ filter_merged <- merged_google %>% filter(!grepl("varies|Varies", Size)) %>% na.
     filter_merged$Size <- as.numeric(gsub("[^0-9]", "", filter_merged$Size))
     filter_merged$Installs <- filter_merged$Installs / 1000
 
-categories <- filter_merged  %>% select(c("App", "Category", "Rating", "Installs")) %>% unique() %>% arrange(desc(Rating)) %>% head(10)
+categories <- filter_merged  %>% select(c("App", "Category", "Rating")) %>% unique() %>% arrange(desc(Rating)) %>% head(10)
 
 ht_cat <- as_huxtable(categories)
 colnames(ht_cat) <- c("Name", "Artist", "Danceability")
 ht_cat <- set_all_borders(ht_cat, TRUE)
-ht_cat <- set_font_size(ht_cat, 12)
+ht_cat <- set_font_size(ht_cat, 10)
 ht_cat
 
 
 ```
 
-This table shows the categories that the top 20 highest rated apps fall into. There are quite a variety of categories in the top 20 but many of the categories are linked to ways that help people, whether this is with health, navigation, mathematics or practising for a written driving test. I would thus suggest creating an app that offers a helpful service, maybe linked to the health and fitness category. The top 20 apps also have a similar number of installations which suggests this is the range to aim for.  
-
-
+This table shows the categories that the top 10 highest rated apps fall into. There are quite a variety of categories in the top 20 but many of the categories are linked to ways that help people, whether this is with health, navigation, mathematics or practising for a written driving test. I would thus suggest creating an app that offers a helpful service, maybe linked to the health and fitness category. 
