@@ -131,11 +131,13 @@ scatter_m
 ```
 
 ```{r}
-top_10_danceability_songs <- spotify_data %>% select(c(name, artist, danceability)) %>% 
-  arrange(desc(danceability)) %>%
-  head(10)
-top_10_table <- as_huxtable(top_10_danceability_songs)
-top_10_table
+
+ht <- as_huxtable(top_10_danceability_songs)
+colnames(ht) <- c("Name", "Artist", "Danceability")
+ht <- set_all_borders(ht, TRUE)
+ht <- set_font_size(ht, 12)
+ht
+
 ```
 ```{r}
 studio_coldplay <- coldplay_data %>% filter(!grepl("live|Live", name)) %>% filter(!grepl("live|Live", album_name))
@@ -158,7 +160,7 @@ box_cp
 box_m <- box_metallica(studio_metallica)
 box_m
 ```
-I can maybe consider doing something linked to valence to show happy vs sad. Isn't really linked to popularity though so I'm not sure yet. 
+
 
 \newpage
 Question 4
