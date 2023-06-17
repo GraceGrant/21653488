@@ -10,8 +10,8 @@ gc() # garbage collection - It can be useful to call gc after a large object has
 ```
 
     ##          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-    ## Ncells 466011 24.9     996804 53.3         NA   669311 35.8
-    ## Vcells 868852  6.7    8388608 64.0      16384  1840062 14.1
+    ## Ncells 465970 24.9     996682 53.3         NA   669320 35.8
+    ## Vcells 868412  6.7    8388608 64.0      16384  1840000 14.1
 
 ``` r
 library(tidyverse)
@@ -67,7 +67,6 @@ list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home 
 list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
-list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5 again/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 covid_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/owid-covid-data.csv")
 deaths_by_cause <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/Deaths_by_cause.csv")
 description <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/covid_data_description.csv")
