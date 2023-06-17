@@ -85,15 +85,19 @@ london_2000 <- london_weather %>% filter(date > 19991231)
 #this only includes London weather info from 2000
 ```
 
-I want to compare cloud cover and sunshine in London to see what they look like compared to each other.
+I want to see the sunshine and rainfall in London in December 2020.
 ```{r}
-graph_cloud <- avg_london(london_2000)
-graph_cloud
+sun_plot <- lollipop_sun(london_2000)
+sun_plot
+
 ```
 I'm using the next graph to show the rainfall for every day of the month of December in 2020.
 ```{r london rain}
 rain_graph <- london_rain(london_weather)
 rain_graph
+
+
+
 ```
 
 There's a lot of data starting all the way from 1881 which I don't think is very necessary. The weather and climate has also changed a lot since then.

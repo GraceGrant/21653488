@@ -6,9 +6,10 @@ temp_bar <- function(UK_19080){
         summarise(avg_temp = mean(TAVG))
 
     g <- df %>% ggplot() +
-        geom_bar(aes(x = Year, y = avg_temp, fill = Year), stat = "identity") +
+        geom_bar(aes(x = Year, y = avg_temp, fill = avg_temp), stat = "identity") +
         theme_bw() +
         labs(title = "Average Temperature per Year", x = "Year", y = "Avg Temp") +
-        theme(legend.position = "none")
+        theme(legend.position = "none") +
+        geom_hline(yintercept = 16, col = "red", lwd = 2)
     g
 }
