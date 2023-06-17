@@ -183,6 +183,15 @@ directors_table <- kable(directors, row.names=TRUE,
                   latex_options = c("striped", "scale_down", "HOLD_position"), 
                   font_size = 13)
 directors_table
+
+
+directors_table <- kable(directors, row.names=TRUE,
+                         caption = "Top Directors and Titles Based on IMDB Score",
+                         booktabs = TRUE) %>% 
+    kable_styling(full_width = TRUE, 
+                  latex_options = c("striped", "scale_down", "HOLD_position"), 
+                  font_size = 13)
+directors_table
 ```
 I'm using the next graph to see, firstly, what the top 10 highest rated movies and TV shows are and then what their genres are.
 ```{r}
@@ -202,9 +211,34 @@ score_plot <- line_score(merged_data)
 score_plot
 
 ```
-```{r}
-
+Question 5
+```{r load data}
+googleplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore.csv")
+reviews_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore_user_reviews.csv")
+merged_google <- merge(googleplay_data, reviews_data, by = "App")
 ```
+I want to make a bubble chart of the different ratings of apps linked to their size and then how many downloads they have which I'm assuming links to profitability. I can also colour code by reviewer sentiment to add more to the graph.
+
+```{r}
+bubble_chart <- bubble(merged_google)
+bubble_chart
+```
+I want to see some of the characteristics of the different categories to determine which type of app would be the best to develop.
+```{r}
+categories <- filter_merged  %>% select(c("App", "Category", "Rating", "Installs")) %>% unique() %>% arrange(desc(Rating)) %>% slice(1:20)
+
+categories_table <- kable(categories, row.names=TRUE, 
+                         caption = "Top 20 Rated Apps",
+                         booktabs = TRUE) %>% 
+    kable_styling(full_width = TRUE, 
+                  latex_options = c("striped", "scale_down", "HOLD_position"), 
+                  font_size = 13)
+categories_table
+```
+
+
+
+
 
 
 

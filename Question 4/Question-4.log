@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.15)  17 JUN 2023 12:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.15)  17 JUN 2023 13:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -517,17 +517,13 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
 (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-)) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box77
-\UL@hyphenbox=\box78
-\UL@skip=\skip81
-\UL@hook=\toks41
-\UL@height=\dimen264
-\UL@pe=\count324
-\UL@pixel=\dimen265
-\ULC@box=\box79
-Package: ulem 2019/11/18
-\ULdepth=\dimen266
+)) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen264
+\WF@size=\dimen265
+\c@WF@wrappedlines=\count324
+\WF@box=\box77
+\WF@everypar=\toks41
+Package: wrapfig 2003/01/31  v 3.6
 ) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
 (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/graphics/color.sty
@@ -538,52 +534,91 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package color Info: Driver file: pdftex.def on input line 149.
 (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx))
 \everycr=\toks42
-\minrowclearance=\skip82
+\minrowclearance=\skip81
 \rownum=\count325
+) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
+(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
+(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box78
+\sift@deathcycles=\count326
+\@vwid@loff=\dimen266
+\@vwid@roff=\dimen267
+)
+\c@taburow=\count327
+\tabu@nbcols=\count328
+\tabu@cnt=\count329
+\tabu@Xcol=\count330
+\tabu@alloc=\count331
+\tabu@nested=\count332
+\tabu@target=\dimen268
+\tabu@spreadtarget=\dimen269
+\tabu@naturalX=\dimen270
+\tabucolX=\dimen271
+\tabu@Xsum=\dimen272
+\extrarowdepth=\dimen273
+\abovetabulinesep=\dimen274
+\belowtabulinesep=\dimen275
+\tabustrutrule=\dimen276
+\tabu@thebody=\toks43
+\tabu@footnotes=\toks44
+\tabu@box=\box79
+\tabu@arstrutbox=\box80
+\tabu@hleads=\box81
+\tabu@vleads=\box82
+\tabu@cellskip=\skip82
 ) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/threeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
-\@tempboxb=\box80
-) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen267
-\WF@size=\dimen268
-\c@WF@wrappedlines=\count326
-\WF@box=\box81
-\WF@everypar=\toks43
-Package: wrapfig 2003/01/31  v 3.6
-) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
-(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
-(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks44
-\XKV@tempa@toks=\toks45
-)
-\XKV@depth=\count327
-File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-)) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/adjustbox/adjcalc.sty
-Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
-) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/adjustbox/trimclip.sty
-Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
-(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/collectbox/collectbox.sty
-Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
-\collectedbox=\box82
-)
-\tc@llx=\dimen269
-\tc@lly=\dimen270
-\tc@urx=\dimen271
-\tc@ury=\dimen272
-Package trimclip Info: Using driver 'tc-pdftex.def'.
-(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
-File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+\@tempboxb=\box83
+) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/threeparttablex/threeparttablex.sty
+Package: threeparttablex 2013/07/23 v0.3 by daleif
+(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\adjbox@Width=\dimen273
-\adjbox@Height=\dimen274
-\adjbox@Depth=\dimen275
-\adjbox@Totalheight=\dimen276
-\adjbox@pwidth=\dimen277
-\adjbox@pheight=\dimen278
-\adjbox@pdepth=\dimen279
-\adjbox@ptotalheight=\dimen280
+\TPTL@width=\skip83
+) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box84
+\UL@hyphenbox=\box85
+\UL@skip=\skip84
+\UL@hook=\toks45
+\UL@height=\dimen277
+\UL@pe=\count333
+\UL@pixel=\dimen278
+\ULC@box=\box86
+Package: ulem 2019/11/18
+\ULdepth=\dimen279
+) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen280
+\c@nlinenum=\count334
+\TeXr@lab=\toks46
+) (/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+LaTeX Info: Redefining \color on input line 711.
+(/Users/gracegrant/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 )
 No file Question-4.aux.
 \openout1 = `Question-4.aux'.
@@ -688,6 +723,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 207.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 207.
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 273.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <13> on input line 273.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9.09996> on input line 273.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6.5> on input line 273.
 
 ! LaTeX Error: Unicode character ơ (U+01A1)
                not set up for use with LaTeX.
@@ -696,15 +738,15 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.356 ...ơn Tùng M-TP \hspace{6pt}\huxbpad{6pt}}
-                                                   \tabularnewline[-0.5pt] 
+l.273 \end{tabular}}
+                     
 Here is how much of TeX's memory you used:
- 17300 strings out of 477695
- 317451 string characters out of 5830708
- 1861759 words of memory out of 5000000
- 37517 multiletter control sequences out of 15000+600000
- 557566 words of font info for 69 fonts, out of 8000000 for 9000
+ 17728 strings out of 477695
+ 321661 string characters out of 5830708
+ 1857759 words of memory out of 5000000
+ 37925 multiletter control sequences out of 15000+600000
+ 572615 words of font info for 85 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,13n,79p,547b,850s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,547b,850s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 !  ==> Fatal error occurred, no output PDF file produced!

@@ -3,7 +3,7 @@
 # Remove comments and add values where applicable.
 # The descriptions below should be self-explanatory
 
-title: "Question 4: Netflix"
+title: "Question 5: Googleplay"
 #subtitle: "This will appear as Right Header"
 
 documentclass: "elsarticle"
@@ -28,7 +28,6 @@ AddTitle: TRUE # Use FALSE when submitting to peer reviewed platform. This will 
 Author1: "Grace Grant"  # First Author - note the thanks message displayed as an italic footnote of first page.
 Ref1: "Stellenbosch University, Stellenbosch, South Africa" # First Author's Affiliation
 Email1: "21653488\\@sun.ac.za" # First Author's Email address
-
 
 # Comment out below to remove both. JEL Codes only given if keywords also given.
 #keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Copula" # Use \\sep to separate
@@ -97,13 +96,12 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width 
 # Lets load in example data, and see how this can be stored and later called from your 'data' folder.
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
-library(huxtable)
-library(xtable)
-library(kableExtra)
-titles_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/data/netflix/titles.csv")
-credits_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/data/netflix/credits.csv")
-merged_data <- merge(titles_data, credits_data, by = "id")
+
 list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+googleplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore.csv")
+reviews_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore_user_reviews.csv")
+merged_google <- merge(googleplay_data, reviews_data, by = "App")
+
 
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
@@ -116,44 +114,34 @@ list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.
 <!-- # Start Writing here: -->
 <!-- ############################## -->
 
-# Highly rated directors
+# App size and ratings linked to number of installs
 ```{r}
-directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>% select (c("title", "type", "imdb_score", "name")) %>% arrange(desc(imdb_score)) %>% slice(1:20)
-
-
-directors_table <- kable(directors, row.names = TRUE, caption = "Top Directors and Titles Based on IMDB Score", booktabs = TRUE) %>%
-  kable_styling(latex_options = c("striped", "scale_down"), font_size = 13) %>%
-  add_header_above(c(" " = 1))
-
-directors_table
-
+bubble_chart <- bubble(merged_google)
+bubble_chart
 ```
 
-This table show the top 20 highest ranked movies and TV shows, based on their IMDB score, as well as the director. The information presented here indicates that these directors have produced some of the most loved and critically acclaimed shows and it would, therefore, be a good idea to consider these directors when choosing which movies and TV shows to stream.
+The graph provided above gives an indication of the link between the size of the app and its rating, with most apps having ratings above 4 and sizes below 100M. I would, therefore, suggest an app with a size below 100M. The graph also shows that, while most apps are linked to positive reviewer sentiment, there does not seem to be a link between reviewer sentiment and the number of installs. This can show that, even though it is important to listen to what reviews have to say, this does not necessarily correlate with how many people choose to install an app. If profitability is linked to the number of installations, it would be a better idea to focus on the app rating and keeping those numbers high while also ensuring that apps are not too big in size. 
 
-# Genres and popularity
+# App ratings and categories
 ```{r}
-genre_tv <- genre_bar_tv(titles_data)
-genre_tv
+filter_merged <- merged_google %>% filter(!grepl("varies|Varies", Size)) %>% na.omit() %>% filter(!grepl("NAN|Nan|NaN|nan", Sentiment))
+
+    filter_merged$Installs <- as.numeric(gsub("[^0-9]", "", filter_merged$Installs))
+    filter_merged$Size <- as.numeric(gsub("[^0-9]", "", filter_merged$Size))
+    filter_merged$Installs <- filter_merged$Installs / 1000
+
+categories <- filter_merged  %>% select(c("App", "Category", "Rating", "Installs")) %>% unique() %>% arrange(desc(Rating)) %>% slice(1:20)
+
+categories_table <- kable(categories, row.names=TRUE, 
+                         caption = "Top 20 Rated Apps",
+                         booktabs = TRUE) %>% 
+    kable_styling(full_width = TRUE, 
+                  latex_options = c("striped", "scale_down", "HOLD_position"), 
+                  font_size = 13)
+categories_table
 ```
-\newpage
-```{r}
-genre_movies <- genre_bar_movies(titles_data)
-genre_movies
-```
 
-These graphs show the top 10 most popular TV shows and movies and indicate which genres they fall into. Comedy shows and movies are the most frequent in the top 10 categories, indicating that these would a good type to choose. Dramas and documentaries also appear to receive high ratings, while for TV shows, animations are also popular. 
-
-# IMDB score over time
-```{r}
-score_plot <- line_score(merged_data)
-score_plot
-```
-
-This graph shows the smoothed time trend of maximum IMDB score over time. We can see that there has been a gradual decline in the maximum score which could indicate that movies and TV shows are declining in quality. If that is the case, it might be worthwhile to select some older films and series or ones from periods where ratings are generally higher. For example, the 20 years between 1990 and 2010 indicate higher scores then the most recent period so these could be good shows to focus on. However, it is important to ensure diversity in the time periods of choice and keep up-to-date with the latest releases. 
-
-
-
+This table shows the categories that the top 20 highest rated apps fall into. There are quite a variety of categories in the top 20 but many of the categories are linked to ways that help people, whether this is with health, navigation, mathematics or practising for a written driving test. I would thus suggest creating an app that offers a helpful service, maybe linked to the health and fitness category. The top 20 apps also have a similar number of installations which suggests this is the range to aim for.  
 
 
 
