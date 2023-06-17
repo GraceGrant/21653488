@@ -171,6 +171,31 @@ set_all_borders(directors_table, 1)
 
 directors_table
 ```
+I'm using the next graph to see, firstly, what the top 10 highest rated movies and TV shows are and then what their genres are.
+```{r}
+shows <- titles_data %>% filter(type == "SHOW") %>% arrange(desc(imdb_score)) %>% filter(title != '#ABtalks') %>% slice(1:10)
+movies <- titles_data %>% filter(type == "MOVIE") %>% arrange(desc(imdb_score)) %>% slice(1:10)
+
+genre_tv <- genre_bar_tv(titles_data)
+genre_tv
+```
+```{r}
+genre_movies <- genre_bar_movies(titles_data)
+genre_movies
+```
+I want to see how the maximum IMDB score per year has changed over time.
+```{r}
+score_plot <- line_score(merged_data)
+score_plot
+
+```
+```{r}
+
+```
+
+
+
+
 
 
 

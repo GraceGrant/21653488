@@ -122,7 +122,31 @@ set_all_borders(directors_table, 1)
 
 directors_table
 ```
+
 This table show the top 20 highest ranked movies and TV shows, based on their IMDB score, as well as the director. The information presented here indicates that these directors have produced some of the most loved and critically acclaimed shows and it would, therefore, be a good idea to consider these directors when choosing which movies and TV shows to stream.
+
+# Genres and popularity
+```{r}
+genre_tv <- genre_bar_tv(titles_data)
+genre_tv
+```
+```{r}
+genre_movies <- genre_bar_movies(titles_data)
+genre_movies
+```
+
+These graphs show the top 10 most popular TV shows and movies and indicate which genres they fall into. Comedy shows and movies are the most frequent in the top 10 categories, indicating that these would a good type to choose. Dramas and documentaries also appear to receive high ratings, while for TV shows, animations are also popular. 
+
+# IMDB score over time
+```{r}
+score_plot <- line_score(merged_data)
+score_plot
+```
+
+This graph shows the smoothed time trend of maximum IMDB score over time. We can see that there has been a gradual decline in the maximum score which could indicate that movies and TV shows are declining in quality. If that is the case, it might be worthwhile to select some older films and series or ones from periods where ratings are generally higher. For example, the 20 years between 1990 and 2010 indicate higher scores then the most recent period so these could be good shows to focus on. However, it is important to ensure diversity in the time periods of choice and keep up-to-date with the latest releases. 
+
+
+
 
 
 
