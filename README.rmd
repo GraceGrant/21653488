@@ -21,6 +21,7 @@ library(xtable)
 library(lubridate)
 library(huxtable)
 library(knitr)
+library(kableExtra)
 list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 covid_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/owid-covid-data.csv")
 deaths_by_cause <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/Deaths_by_cause.csv")
@@ -169,6 +170,18 @@ directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year 
 directors_table <- as_hux(directors)
 set_all_borders(directors_table, 1)
 
+directors_table
+
+directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>% select (c("title", "type", "imdb_score", "name")) %>% arrange(desc(imdb_score)) %>% slice(1:20)
+directors_table <- as_hux(directors)
+set_all_borders(directors_table, 1)
+
+directors_table <- kable(directors, row.names=TRUE, 
+                         caption = "Top Directors and Titles Based on IMDB Score",
+                         booktabs = TRUE) %>% 
+    kable_styling(full_width = TRUE, 
+                  latex_options = c("striped", "scale_down", "HOLD_position"), 
+                  font_size = 13)
 directors_table
 ```
 I'm using the next graph to see, firstly, what the top 10 highest rated movies and TV shows are and then what their genres are.
