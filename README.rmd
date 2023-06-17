@@ -71,6 +71,7 @@ admissions_plot <- admissions(covid_data)
 admissions_plot
 ```
 \newpage
+Question 2
 ```{r loading data}
 london_weather <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/london_weather.csv")
 UK_detailed <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/UKMonthly_Detailed.csv")
@@ -153,6 +154,27 @@ box_m <- box_metallica(studio_metallica)
 box_m
 ```
 I can maybe consider doing something linked to valence to show happy vs sad. Isn't really linked to popularity though so I'm not sure yet. 
+
+\newpage
+Question 4
+```{r load data}
+titles_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/data/netflix/titles.csv")
+credits_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/data/netflix/credits.csv")
+merged_data <- merge(titles_data, credits_data, by = "id")
+```
+
+This creates a table of the top 20 movies and shows based on director.
+```{r}
+directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>% select (c("title", "type", "imdb_score", "name")) %>% arrange(desc(imdb_score)) %>% slice(1:20)
+directors_table <- as_hux(directors)
+set_all_borders(directors_table, 1)
+
+directors_table
+```
+
+
+
+
 
 
 
