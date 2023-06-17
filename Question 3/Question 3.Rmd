@@ -97,7 +97,12 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width 
 # Lets load in example data, and see how this can be stored and later called from your 'data' folder.
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
-
+library(huxtable)
+library(RColorBrewer)
+list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+coldplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/Coldplay.csv")
+metallica_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/metallica.csv")
+spotify_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/Broader_Spotify_Info.csv")
 
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
@@ -119,44 +124,57 @@ Everybody loves to dance when listening to music as a form of outlet and a way t
 top_10_danceability_songs <- spotify_data %>% select(c(name, artist, danceability)) %>% 
   arrange(desc(danceability)) %>%
   head(10)
-top_10_table <- as_huxtable(top_10_danceability_songs)
-top_10_table
+
+ht <- as_huxtable(top_10_danceability_songs)
+colnames(ht) <- c("Name", "Artist", "Danceability")
+ht <- set_all_borders(ht, TRUE)
+ht <- set_font_size(ht, 12)
+ht
 ```
 
-
 These scatter plots show the correlation between danceability and popularity for each of the bands, indicating a positive link between the two factors.
+
 ```{r}
 scatter_cp <- scatter_coldplay(coldplay_data)
 scatter_cp
 ```
+
 ```{r}
 scatter_m <- scatter_metallica(metallica_data)
 scatter_m
 ```
+
 # Popularity
 The popularity of each of the bands' albums is also important to consider and is highlighted in the following graphs.
+
 ```{r}
 studio_coldplay <- coldplay_data %>% filter(!grepl("live|Live", name)) %>% filter(!grepl("live|Live", album_name))
 studio_metallica <- metallica_data %>% filter(!grepl("live|Live", name)) %>% filter(!grepl("live|Live", album))
 pop_g_cp <- popularity_coldplay(studio_coldplay)
 pop_g_cp
 ```
+
+
 ```{r}
 pop_g_m <- popularity_metallica(studio_metallica)
 pop_g_m
 ```
+
 These graphs show that the most popular albums for Coldplay and Metallica are Mylo Xyloto and 72 Seasons, respectively. 
-The next set of graphs also compare the popularity of each album but show the distribution across popularity by using box and whisker plots.
+The next set of graphs also compares the popularity of each album but shows the distribution across popularity by using box and whisker plots.
+
 ```{r}
 box_cp <- box_coldplay(studio_coldplay)
 box_cp
 ```
+
+
 ```{r}
 box_m <- box_metallica(studio_metallica)
 box_m
 ```
-Something about the distributions.
 
+For some of the albums the distributions are quite large, indicating greater diversity in the range of popularity perceptions for each album. Considering the bands' most popular albums from the first bar graphs, Mylo Xyloto and 72 Seasons, we see that Mylo Xyloto has a much more spread out box and whisker plot compared to 72 Seasons. The latter album can, therefore, be reliably considered as the most popular album for Metallica. However, it may be better to consider A Head Full of Dreams or Music of the Spheres as Coldplay's most popular albums as they have smaller distributions while still having overall high popularity. 
 
 
 

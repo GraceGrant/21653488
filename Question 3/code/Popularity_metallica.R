@@ -7,7 +7,7 @@ popularity_metallica <- function(studio_metallica){
     g <- df %>% ggplot() +
         geom_bar(aes(x=album, y=popularity, fill = album), stat = "identity") +
         theme_bw() +
-        labs(title = "Metallica Albums by Popularity", x = "Albums", y = "Popularity") +
+        labs(title = "Metallica Albums by Popularity", x = "Albums", y = "Popularity", fill = "Album") +
         theme(axis.text.x = element_blank())
     g
 }
