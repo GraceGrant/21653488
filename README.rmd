@@ -17,12 +17,16 @@ rm(list = ls()) # Clean your environment:
 gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
 library(tidyverse)
 library(RColorBrewer)
-library(xtable)
 library(lubridate)
 library(huxtable)
 library(knitr)
 library(kableExtra)
-list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+list.files('/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5 again/code', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 covid_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/owid-covid-data.csv")
 deaths_by_cause <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/Deaths_by_cause.csv")
 description <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 1/data/Covid/covid_data_description.csv")
@@ -73,7 +77,7 @@ admissions_plot
 ```
 \newpage
 Question 2
-```{r loading data}
+```{r}
 london_weather <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/london_weather.csv")
 UK_detailed <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 2/data/London/UKMonthly_Detailed.csv")
 london_weather$date <-as.character(london_weather$date)
@@ -107,7 +111,7 @@ temp_graph <- temp_bar(UK_1980)
 temp_graph
 ```
 Question 3
-```{r load data}
+```{r}
 coldplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/Coldplay.csv")
 metallica_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/metallica.csv")
 spotify_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/Broader_Spotify_Info.csv")
@@ -131,6 +135,9 @@ scatter_m
 ```
 
 ```{r}
+top_10_danceability_songs <- spotify_data %>% select(c(name, artist, danceability)) %>% 
+  arrange(desc(danceability)) %>%
+  head(10)
 
 ht <- as_huxtable(top_10_danceability_songs)
 colnames(ht) <- c("Name", "Artist", "Danceability")
@@ -164,7 +171,7 @@ box_m
 
 \newpage
 Question 4
-```{r load data}
+```{r}
 titles_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/data/netflix/titles.csv")
 credits_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 4/data/netflix/credits.csv")
 merged_data <- merge(titles_data, credits_data, by = "id")
@@ -172,32 +179,14 @@ merged_data <- merge(titles_data, credits_data, by = "id")
 
 This creates a table of the top 20 movies and shows based on director.
 ```{r}
-directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>% select (c("title", "type", "imdb_score", "name")) %>% arrange(desc(imdb_score)) %>% slice(1:20)
-directors_table <- as_hux(directors)
-set_all_borders(directors_table, 1)
+directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>%
+        select (c("title", "type", "imdb_score", "name")) %>% arrange(desc(imdb_score)) %>% slice(1:10)
 
-directors_table
-
-directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>% select (c("title", "type", "imdb_score", "name")) %>% arrange(desc(imdb_score)) %>% slice(1:20)
-directors_table <- as_hux(directors)
-set_all_borders(directors_table, 1)
-
-directors_table <- kable(directors, row.names=TRUE, 
-                         caption = "Top Directors and Titles Based on IMDB Score",
-                         booktabs = TRUE) %>% 
-    kable_styling(full_width = TRUE, 
-                  latex_options = c("striped", "scale_down", "HOLD_position"), 
-                  font_size = 13)
-directors_table
-
-
-directors_table <- kable(directors, row.names=TRUE,
-                         caption = "Top Directors and Titles Based on IMDB Score",
-                         booktabs = TRUE) %>% 
-    kable_styling(full_width = TRUE, 
-                  latex_options = c("striped", "scale_down", "HOLD_position"), 
-                  font_size = 13)
-directors_table
+ht_dir <- as_huxtable(directors)
+colnames(ht_dir) <- c("Title", "Type", "IMDB Score", "Director")
+ht_dir <- set_all_borders(ht_dir, TRUE)
+ht_dir <- set_font_size(ht_dir, 10)
+ht_dir
 ```
 I'm using the next graph to see, firstly, what the top 10 highest rated movies and TV shows are and then what their genres are.
 ```{r}
@@ -218,7 +207,7 @@ score_plot
 
 ```
 Question 5
-```{r load data}
+```{r}
 googleplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore.csv")
 reviews_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore_user_reviews.csv")
 merged_google <- merge(googleplay_data, reviews_data, by = "App")
@@ -231,15 +220,20 @@ bubble_chart
 ```
 I want to see some of the characteristics of the different categories to determine which type of app would be the best to develop.
 ```{r}
-categories <- filter_merged  %>% select(c("App", "Category", "Rating", "Installs")) %>% unique() %>% arrange(desc(Rating)) %>% slice(1:20)
 
-categories_table <- kable(categories, row.names=TRUE, 
-                         caption = "Top 20 Rated Apps",
-                         booktabs = TRUE) %>% 
-    kable_styling(full_width = TRUE, 
-                  latex_options = c("striped", "scale_down", "HOLD_position"), 
-                  font_size = 13)
-categories_table
+filter_merged <- merged_google %>% filter(!grepl("varies|Varies", Size)) %>% na.omit() %>% filter(!grepl("NAN|Nan|NaN|nan", Sentiment))
+
+    filter_merged$Installs <- as.numeric(gsub("[^0-9]", "", filter_merged$Installs))
+    filter_merged$Size <- as.numeric(gsub("[^0-9]", "", filter_merged$Size))
+    filter_merged$Installs <- filter_merged$Installs / 1000
+
+categories <- filter_merged  %>% select(c("App", "Category", "Rating")) %>% unique() %>% arrange(desc(Rating)) %>% head(10)
+
+ht_cat <- as_huxtable(categories)
+colnames(ht_cat) <- c("Name", "Artist", "Danceability")
+ht_cat <- set_all_borders(ht_cat, TRUE)
+ht_cat <- set_font_size(ht_cat, 10)
+ht_cat
 ```
 
 
