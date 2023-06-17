@@ -33,7 +33,7 @@ bubble_chart <- bubble(merged_google)
 bubble_chart
 ```
 
-The graph provided above gives an indication of the link between the size of the app and its rating, with most apps having ratings above 4 and sizes below 100M. I would, therefore, suggest an app with a size below 100M. The graph also shows that, while most apps are linked to positive reviewer sentiment, there does not seem to be a link between reviewer sentiment and the number of installs. This can show that, even though it is important to listen to what reviews have to say, this does not necessarily correlate with how many people choose to install an app. If profitability is linked to the number of installations, it would be a better idea to focus on the app rating and keeping those numbers high while also ensuring that apps are not too big in size. 
+The graph provided above gives an indication of the link between the size of the app and its rating, with most apps having ratings above 4 and sizes below 100M. I would, therefore, suggest an app with a size below 100M. The graph also shows that, while most apps are linked to positive reviewer sentiment, there does not seem to be a link between reviewer sentiment and the number of installations. This can show that, even though it is important to listen to what reviews have to say, this does not necessarily correlate with how many people choose to install an app. If profitability is linked to the number of installations, it would be a better idea to focus on the app rating and keeping those numbers high while also ensuring that apps are not too big in size. 
 
 # App ratings and categories
 ```{r}
