@@ -27,7 +27,6 @@ googleplay_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data S
 reviews_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/data/googleplay/googleplaystore_user_reviews.csv")
 merged_google <- merge(googleplay_data, reviews_data, by = "App")
 
-rmarkdown::render("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 5/Question-5-html.html", output_format = "pdf_document")
 ```
 # App size and ratings linked to number of installs
 ```{r}
