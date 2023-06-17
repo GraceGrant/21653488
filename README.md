@@ -1,12 +1,8 @@
 
 # Purpose
 
-Purpose of this work folder.
-
-Ideally store a minimum working example data set in data folder.
-
-Add binary files in bin, and closed R functions in code. Human Readable
-settings files (e.g. csv) should be placed in settings/
+This shows the code and some of my thinking about what I intended to
+show in my graphs and tables for each question.
 
 ``` r
 rm(list = ls()) # Clean your environment:
@@ -14,8 +10,8 @@ gc() # garbage collection - It can be useful to call gc after a large object has
 ```
 
     ##          used (Mb) gc trigger (Mb) limit (Mb) max used (Mb)
-    ## Ncells 465995 24.9     996758 53.3         NA   669311 35.8
-    ## Vcells 868717  6.7    8388608 64.0      16384  1840062 14.1
+    ## Ncells 466011 24.9     996804 53.3         NA   669311 35.8
+    ## Vcells 868852  6.7    8388608 64.0      16384  1840062 14.1
 
 ``` r
 library(tidyverse)
@@ -79,10 +75,8 @@ description <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Scien
 
 # Question 1: COVID
 
-1.1 It might be interesting to look at vaccinations in Africa and the
-outbreak of the pandemic compared to other regions. For this question I
-could maybe also look at the deaths by cause database to see how COVID
-deaths differed to deaths before COVID.
+1.1 It might be interesting to look at deaths and the outbreak of the
+pandemic compared to other regions.
 
 ``` r
 covid_cleaned <- covid_data %>%
@@ -94,8 +88,10 @@ bar_deaths <- plot_deaths(covid_cleaned)
 bar_deaths
 ```
 
-![](README_files/figure-gfm/bar%20deaths-1.png)<!-- --> This first graph
-shows the total number of deaths for each continent from COVID.
+![](README_files/figure-gfm/bar%20deaths-1.png)<!-- -->
+
+This first graph shows the total number of deaths for each continent
+from COVID.
 
 ``` r
 library(lubridate)
@@ -111,9 +107,16 @@ suppressWarnings(line_cases <- plot_cases(covid_cleaned))
 line_cases
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- --> This graph
-shows how each continent experienced a growth in total cases (in
-millions) in 2020.
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+This graph shows how each continent experienced a growth in total cases
+(in millions) in 2020.
+
+For this next bit, I grouped the countries that had the highest and
+lowest 1. percentage of population aged older than 70 2. extreme poverty
+and 3. diabetes prevalence. I can then compare the total deaths for the
+two graphs for each graph to see how e.g. having a higher prevalence of
+diabetes affected COVID deaths.
 
 ``` r
 age_plot <- grouped_age(covid_data)
@@ -137,6 +140,9 @@ diabetes_plot
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+I want to look at weekly hopsital admissions and weekly ICU admissions
+to see if this can show leading or lagging indicators.
 
 ``` r
 admissions_plot <- admissions(covid_data)
@@ -177,7 +183,8 @@ rain_graph
 
 There’s a lot of data starting all the way from 1881 which I don’t think
 is very necessary. The weather and climate has also changed a lot since
-then.
+then. I’ll look at average temperature sice 1980 in the Midlands and
+compare that to Cape Town’s average temperature (around 16 degrees).
 
 ``` r
 UK_1980 <- UK_detailed %>% filter (DATE >= "1980-01-01")
@@ -193,9 +200,9 @@ metallica_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Sc
 spotify_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Science/Take home exam/Question 3/data/Coldplay_vs_Metallica/Broader_Spotify_Info.csv")
 ```
 
-I’m going to do a scatter plot to see the correlation between energy and
-popularity and then, for each album of the bands, do a bar graph of
-their popularity and danceability.
+I’m going to do a scatter plot to see the correlation between
+danceability and popularity and then show a table of the top 10 songs
+based on danceability.
 
 ``` r
 correlation_cp <- cor(coldplay_data[, c("popularity", "danceability", "energy", "instrumentalness", "liveness", "loudness")])
@@ -295,12 +302,16 @@ ht
            │ Bucket                  │              │              │
            └─────────────────────────┴──────────────┴──────────────┘
 
-Column names: Name, Artist, Danceability
+Column names: Name, Artist, Danceability I need to filter to only show
+studio recordings.
 
 ``` r
 studio_coldplay <- coldplay_data %>% filter(!grepl("live|Live", name)) %>% filter(!grepl("live|Live", album_name))
 studio_metallica <- metallica_data %>% filter(!grepl("live|Live", name)) %>% filter(!grepl("live|Live", album))
 ```
+
+This shows the popularity of each album for each band, using first a bar
+plot and then a box and whisker.
 
 ``` r
 pop_g_cp <- popularity_coldplay(studio_coldplay)
@@ -338,7 +349,7 @@ credits_data <- read.csv("/Users/gracegrant/Documents/Postgrad/Masters/Data Scie
 merged_data <- merge(titles_data, credits_data, by = "id")
 ```
 
-This creates a table of the top 20 movies and shows based on director.
+This creates a table of the top 10 movies and shows based on director.
 
 ``` r
 directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>%
