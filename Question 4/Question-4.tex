@@ -144,6 +144,14 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{hhline}
+\usepackage{calc}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{hyperref}
 
 %%% Hard setting column skips for reports - this ensures greater consistency and control over the length settings in the document.
 %% page layout
@@ -234,9 +242,128 @@
 \hypertarget{highly-rated-directors}{%
 \section{Highly rated directors}\label{highly-rated-directors}}
 
-\includegraphics{Question-4_files/figure-latex/unnamed-chunk-1-1.pdf}
+ 
+  \providecommand{\huxb}[2]{\arrayrulecolor[RGB]{#1}\global\arrayrulewidth=#2pt}
+  \providecommand{\huxvb}[2]{\color[RGB]{#1}\vrule width #2pt}
+  \providecommand{\huxtpad}[1]{\rule{0pt}{#1}}
+  \providecommand{\huxbpad}[1]{\rule[-#1]{0pt}{#1}}
 
-This table show the top 20 highest ranked movies and TV shows, based on
+\begin{table}[ht]
+\begin{centerbox}
+\begin{threeparttable}
+ \label{tab:unnamed-chunk-1}
+\setlength{\tabcolsep}{0pt}
+\begin{tabular}{l l l l}
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont title} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont type} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont imdb\_score} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont name} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Reply 1988} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont SHOW} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9.2} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Shin Won-ho} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont My Mister} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont SHOW} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9.2} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Kim Won-seok} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont The Last Dance} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont SHOW} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9.1} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Jason Hehir} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont C/o Kancharapalem} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont MOVIE} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9\hphantom{0}\hphantom{0}} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Venkatesh Maha} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont David Attenborough: A Life on Our Planet} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont MOVIE} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9\hphantom{0}\hphantom{0}} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Keith Scholey} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont David Attenborough: A Life on Our Planet} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont MOVIE} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9\hphantom{0}\hphantom{0}} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Jonathan Hughes} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont David Attenborough: A Life on Our Planet} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont MOVIE} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9\hphantom{0}\hphantom{0}} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Alastair Fothergill} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Okupas} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont SHOW} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9\hphantom{0}\hphantom{0}} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Bruno Stagnaro} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Hunter x Hunter} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont SHOW} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 9\hphantom{0}\hphantom{0}} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Hiroshi Koujina} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+
+\multicolumn{1}{!{\huxvb{0, 0, 0}{1}}l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Forrest Gump} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont MOVIE} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{r!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedleft \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont 8.8} \hspace{6pt}\huxbpad{6pt}} &
+\multicolumn{1}{l!{\huxvb{0, 0, 0}{1}}}{\huxtpad{6pt + 1em}\raggedright \hspace{6pt} {\fontsize{10pt}{12pt}\selectfont Robert Zemeckis} \hspace{6pt}\huxbpad{6pt}} \tabularnewline[-0.5pt]
+
+
+\hhline{>{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}->{\huxb{0, 0, 0}{1}}-}
+\arrayrulecolor{black}
+\end{tabular}
+\end{threeparttable}\par\end{centerbox}
+
+\end{table}
+ 
+
+This table show the top 10 highest ranked movies and TV shows, based on
 their IMDB score, as well as the director. The information presented
 here indicates that these directors have produced some of the most loved
 and critically acclaimed shows and it would, therefore, be a good idea

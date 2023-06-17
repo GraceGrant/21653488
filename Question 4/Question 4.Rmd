@@ -117,11 +117,17 @@ list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.
 
 # Highly rated directors
 ```{r}
-dir_plot <- lollipop_dir(merged_data)
-dir_plot
+directors <- merged_data %>% filter(role == "DIRECTOR") %>% filter(release_year > 1980) %>%
+        select (c("title", "type", "imdb_score", "name")) %>% arrange(desc(imdb_score)) %>% slice(1:10)
+
+ht_dir <- as_huxtable(directors)
+colnames(ht_dir) <- c("Title", "Type", "IMDB Score", "Director")
+ht_dir <- set_all_borders(ht_dir, TRUE)
+ht_dir <- set_font_size(ht_dir, 10)
+ht_dir
 ```
 
-This table show the top 20 highest ranked movies and TV shows, based on their IMDB score, as well as the director. The information presented here indicates that these directors have produced some of the most loved and critically acclaimed shows and it would, therefore, be a good idea to consider these directors when choosing which movies and TV shows to stream.
+This table show the top 10 highest ranked movies and TV shows, based on their IMDB score, as well as the director. The information presented here indicates that these directors have produced some of the most loved and critically acclaimed shows and it would, therefore, be a good idea to consider these directors when choosing which movies and TV shows to stream.
 
 # Genres and popularity
 ```{r}
